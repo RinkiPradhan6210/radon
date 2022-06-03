@@ -77,9 +77,50 @@ console.log(finalArray)
    
     res.send(  { data: missingNumber  }  );
   });
- 
-  
- 
+ //api for get/movies
+  router.get('/movies',function(req,res){
+    let movies=['Rang de basanti','The shining','Lord of the ring','Batman begins']
+    
+    res.send(movies)
+  });
+    //api for movies/:indexNumber
+    router.get('/movies/:inddexNumber' , function(req,res){
+      let movies = ['Rang de basanti', 'The shining' , 'Lord of the rings',  'Batman begins']
+      let displayMoive
+      if(req.params.inddexNumber < movies.length){
+          displayMoive = movies[req.params.inddexNumber]
+      }else{
+          displayMoive = "use a valid index number"
+      }
+      
+      res.send(displayMoive)
+  });
+      
+    
+
+    //api for called GET/films
+      router.get('/films',function(req,res){
+      let films=[{"id":1,"name":"The Shining"},{"id":2,"name":"Rang de Basanti"},{"id":3,"name":"Incendies"},{"id":4,"name":"Finding Nemo"}]
+      res.send(films)
+    });
+    //api for GET/film/:filmId
+    router.get('/films/:filmId',function(req,res){
+      let films=[{"id":1,"name":"The Shining"},{"id":2,"name":"Rang de Basanti"},{"id":3,"name":"Incendies"},{"id":4,"name":"Finding Nemo"}]
+    let displayingFilm
+    if(req.params.filmId <= films.length && req.params.filmId != 0){
+        for(index = 0; index< films.length; index++){
+            if(req.params.filmId == films[index].id){
+                displayingFilm = films[index].name
+                break
+            }
+        }
+    }else{
+        displayingFilm = "no film at this index"
+    }
+    
+
+    res.send(displayingFilm)
+})
 module.exports = router;
 // adding this comment for no reason
  
