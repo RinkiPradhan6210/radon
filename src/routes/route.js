@@ -121,6 +121,64 @@ console.log(finalArray)
 
     res.send(displayingFilm)
 })
+//Write a POST /players api that saves a player’s details and doesn’t allow saving the data of a player with a name that already exists in the data
+
+let players =
+   [
+       {
+           "name": "manish",
+           "dob": "1/1/1995",
+           "gender": "male",
+           "city": "jalandhar",
+           "sports": [
+               "swimming"
+           ]
+       },
+       {
+           "name": "gopal",
+           "dob": "1/09/1995",
+           "gender": "male",
+           "city": "delhi",
+           "sports": [
+               "soccer"
+           ]
+       },
+       {
+           "name": "lokesh",
+           "dob": "1/1/1990",
+           "gender": "male",
+           "city": "mumbai",
+           "sports": [
+               "soccer"
+           ]
+       },
+   ]
+   router.post('/players', function (req, res) {
+    
+    let newPlayer = req.body
+    let newPlayersName = newPlayer.name
+    let isNameRepeated = false
+
+    //let player = players.find(p => p.name == newPlayersName)
+
+    for(let i = 0; i < players.length; i++) {
+        if(players[i].name == newPlayersName) {
+            isNameRepeated = true;
+            break;
+        }
+    }
+
+    
+    if (isNameRepeated) {
+        //If Player already exists
+        res.send("This player was already added!")
+    } else {
+        //New entry then add
+        players.push(newPlayer)
+        res.send(players)
+    }
+});
+
 module.exports = router;
 // adding this comment for no reason
  
