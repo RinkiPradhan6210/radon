@@ -11,12 +11,16 @@ router.post("/createAuthor", BookController.createAuthor)
 
 router.get("/listBooksByChetanBhagat", BookController.listBooksByChetanBhagat)
 router.get("/authorOfBook", BookController. authorOfBook)
+router.get("/ respondBack", BookController.  respondBack)
+//router.get("/booksById", BookController. booksById)
+
+
 
 
 module.exports = router;
 //MOMENT JS
 //const moment = require('moment');
-//router.get("/dateManipulations", function (req, res) {
+//router.get("/dateManipulations", function (req, res)
     
     // const today = moment();
     // let x= today.add(10, "days")
